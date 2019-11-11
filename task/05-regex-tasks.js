@@ -31,7 +31,7 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-   throw new Error('Not implemented');
+    return /([{])([A-Fa-f0-9]{8})([-])([A-Fa-f0-9]{4})([-])([A-Fa-f0-9]{4})([-])([A-Fa-f0-9]{4})([-])([A-Fa-f0-9]{12})([}])/;
 }
 
 
@@ -53,7 +53,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+    return /p([\w|\W])t/;
 }
 
 
@@ -70,9 +70,10 @@ function getRegexForPitSpot() {
  * '010.234.015.001'
  *
  * @return {RegExp}
- */
+ */ 
+// ((25([0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])).?{4}
 function getRegexForIPv4() {
-   throw new Error('Not implemented');
+    return /^((25([0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])).?){4}$/;
 }
 
 
@@ -91,7 +92,7 @@ function getRegexForIPv4() {
  * @return {RegExp}
  */
 function getRegexForSSN() {
-   throw new Error('Not implemented');
+    return /^((?!(000))([0-9]){3})-((?!(00))([0-9]){2})-((?!(0000))([0-9]){4})$/;
 }
 
 
@@ -116,7 +117,7 @@ function getRegexForSSN() {
  *   'Pa55'.match(validator) => false
  */
 function getPasswordValidator(minLength) {
-   throw new Error('Not implemented');
+    return new RegExp('(?!.*[\\s])(?!.*[_])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{'+ minLength +',}');;
 }
 
 
