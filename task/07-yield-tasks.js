@@ -33,7 +33,22 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    for (let i = 99; i >= 0; i--) {
+        if (i === 0) {
+            yield 'No more bottles of beer on the wall, no more bottles of beer.';
+            yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
+        } else if (i === 1) {
+            yield '1 bottle of beer on the wall, 1 bottle of beer.';
+            yield 'Take one down and pass it around, no more bottles of beer on the wall.';
+        } else {
+            yield i + ' bottles of beer on the wall, ' + i + ' bottles of beer.';
+            if (i - 1 === 1) {
+                yield 'Take one down and pass it around, ' + (i - 1) + ' bottle of beer on the wall.';
+            } else {
+                yield 'Take one down and pass it around, ' + (i - 1) + ' bottles of beer on the wall.';
+            }
+        }
+    }
 }
 
 
@@ -47,7 +62,14 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+    var prev = 0;
+    var active = 1;
+    while (true) {  
+        var temp = prev;
+        prev = active;
+        active = temp + prev;
+        yield temp;
+    }
 }
 
 
@@ -82,7 +104,17 @@ function* getFibonacciSequence() {
  *
  */
 function* depthTraversalTree(root) {
-    throw new Error('Not implemented');
+    let stack = [];
+    stack.push(root);
+    while (stack.length) {
+        root = stack.pop();
+        yield root;
+        if (root.children) {
+            for (let i = root.children.length-1; i >= 0; i -= 1) {
+                stack.push(root.children[i]);
+            }   
+        }
+    }
 }
 
 
@@ -108,6 +140,21 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
+    let queue = [];
+    root.isChecked = true;
+    yield root;
+    queue.push(root);
+    while (queue.length) {
+        root = queue.pop();
+        if (root.isChecked !== undefined) {
+            yield root;
+        } 
+        for (let i = root.children.length-1; i >= 0; i += 1) {
+            root.children[i].isChecked = true;
+            queue.push(root.children[i]);
+            yield root.children[i];
+        }
+    }
     throw new Error('Not implemented');
 }
 
