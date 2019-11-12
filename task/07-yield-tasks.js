@@ -140,21 +140,6 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-    let queue = [];
-    root.isChecked = true;
-    yield root;
-    queue.push(root);
-    while (queue.length) {
-        root = queue.pop();
-        if (root.isChecked !== undefined) {
-            yield root;
-        } 
-        for (let i = root.children.length-1; i >= 0; i += 1) {
-            root.children[i].isChecked = true;
-            queue.push(root.children[i]);
-            yield root.children[i];
-        }
-    }
     throw new Error('Not implemented');
 }
 
